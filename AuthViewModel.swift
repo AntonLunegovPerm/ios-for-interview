@@ -7,7 +7,7 @@ import IQKeyboardManagerSwift
 final class AuthViewModel: ViewModel{
     
     // MARK: - Private properties
-    private var castView: AuthViewController!
+    private weak var castView: AuthViewController!
 
     
     // MARK: - Lifecycle
