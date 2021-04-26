@@ -7,16 +7,13 @@ open class ViewModel: NSObject {
 
     var rootView: UIViewController?
     var baseCoordinator: BaseCoordinator?
-    let disposeBag  = DisposeBag()
     var appData     = AppData(JSONString: Storage.sharedInstance.getAppData())
     
-    private var sideMenu: SideMenuNavigationController?
+    private weak var sideMenu: SideMenuNavigationController?
     
     init(userDef: UserDefaults, coordinator: BaseCoordinator) {
-        self.provider = provider
         self.baseCoordinator = coordinator
         super.init()
-
     }
     
     func initNavigationController(_ nvc: UINavigationController?){
@@ -25,7 +22,6 @@ open class ViewModel: NSObject {
     
     func deinitViewModel(){
         rootView        = nil
-        provider        = nil
         baseCoordinator = nil
     }
     
