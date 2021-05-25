@@ -4,7 +4,7 @@ import UIKit
 class Repository: BaseRepositoryProtocol {
 
     typealias View = BaseViewProtocol
-    weak var view: View?
+    private weak var view: View?
     
     func attachView(view: BaseViewProtocol) {
         self.view = view
