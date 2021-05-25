@@ -1,3 +1,4 @@
+//Authorization module
 
 import UIKit
 
