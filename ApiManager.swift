@@ -3,8 +3,6 @@ import Foundation
 import Moya
 import ObjectMapper
 import Moya_ObjectMapper
-import RxSwift
-import RxCocoa
 
 enum APIEnvironment{
     case dev

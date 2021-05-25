@@ -1,7 +1,7 @@
 
 import UIKit
 
-class AuthViewController: ViewController<AuthViewModel, AuthCoordinator, AuthViewRepo>, AuthViewProtocol {
+class AuthViewController: ViewController<AuthPresenter, AuthCoordinator, AuthViewRepo>, AuthViewProtocol {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginTextField: RegTextFieldView!
@@ -17,7 +17,7 @@ class AuthViewController: ViewController<AuthViewModel, AuthCoordinator, AuthVie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel?.checkSessionAndOpenHomeVC()
+        presenter?.checkSessionAndOpenHomeVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +40,7 @@ class AuthViewController: ViewController<AuthViewModel, AuthCoordinator, AuthVie
     }
     
     func showErrorPassword() {
-        viewModel?.showLoginError()
+        presenter?.showLoginError()
     }
     
     override func updateView() {

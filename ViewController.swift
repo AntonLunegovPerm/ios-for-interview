@@ -1,44 +1,37 @@
 
+
 import UIKit
 import RxSwift
 
-class ViewController<U: ViewModel, S: BaseCoordinator, M: Repository>: UIViewController, BaseViewProtocol {
+class ViewController<U: Presenter, S: BaseCoordinator, M: Repository>: UIViewController, BaseViewProtocol {
     
     typealias T = U
     typealias C = S
     typealias X = M
     
-    var viewModel:      T?
+    var presenter:      T?
     var coordinator:    C?
     var repository:     X?
 
     convenience init() {
-        self.init(viewModel: nil, coordinator: nil, repository: nil)
+        self.init(presenter: nil, coordinator: nil, repository: nil)
     }
 
-    init(viewModel: T?, coordinator: C?, repository: X?) {
+    init(presenter: T?, coordinator: C?, repository: X?) {
         self.coordinator    = coordinator
-        self.viewModel      = viewModel
+        self.presenter      = presenter
         self.repository     = repository
         super.init(nibName: nil, bundle: nil)
         self.repository?.view = self
     }
 
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    deinit {
-        viewModel?.deinitViewModel()
-        viewModel   = nil
-        coordinator = nil
-        repository  = nil
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel?.rootView = self
+        self.presenter?.rootView = self
         repository?.attachView(view: self)
         castRootVC()
         makeUI()
@@ -50,10 +43,10 @@ class ViewController<U: ViewModel, S: BaseCoordinator, M: Repository>: UIViewCon
     }
     
     func makeUI() {
-        viewModel?.makeUI()
+        presenter?.makeUI()
     }
     func castRootVC(){
-        viewModel?.castRootVC()
+        presenter?.castRootVC()
     }
     
     func initCoordinator(){

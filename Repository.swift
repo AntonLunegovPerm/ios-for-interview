@@ -39,9 +39,7 @@ class Repository: BaseRepositoryProtocol {
                 }
 
         }, error: { (error) in
-            if error == 403 || error == 401{
-                self.view?.logout()
-            }
+ 
         })
     }
 }

@@ -15,16 +15,16 @@ extension SwinjectStoryboard {
         defaultContainer.autoregister(BaseCoordinator.self, initializer: BaseCoordinator.init)
         defaultContainer.autoregister(AuthCoordinator.self, initializer: AuthCoordinator.init)
         
-        // MARK: - viewmodels
+        // MARK: - presenter
             
-        defaultContainer.autoregister(AuthViewModel.self, initializer: AuthViewModel.init)
+        defaultContainer.autoregister(AuthPresenter.self, initializer: AuthPresenter.init)
 
         // MARK: - repositoryes
         defaultContainer.autoregister(AuthViewRepo.self, initializer: AuthViewRepo.init)
         
         // MARK: - controllers
         defaultContainer.storyboardInitCompleted(AuthViewController.self) { r, c in
-            c.viewModel     = r~>
+            c.presenter     = r~>
             c.coordinator   = r~>
             c.repository    = r~>
         }
